@@ -30,17 +30,16 @@ def model_prediction(image_file):
         st.error("Model is not loaded!")
         return None
 
-    try:
-        image = Image.open(image_file).convert("RGB")
-        image = image.resize((224, 224))
-        input_arr = tf.keras.preprocessing.image.img_to_array(image)
-        input_arr = np.expand_dims(input_arr, axis=0)
-        prediction = model.predict(input_arr)
-        result_index = np.argmax(prediction)
-        return result_index
-    except Exception as e:
-        st.error(f"Prediction failed: {e}")
-        return None
+    image = Image.open(image_file).convert("RGB")
+    image = image.resize((224, 224))
+
+    input_arr = tf.keras.preprocessing.image.img_to_array(image)
+    input_arr = np.expand_dims(input_arr, axis=0)
+    input_arr = preprocess_input(input_arr)  # ✅ REQUIRED
+
+    prediction = model.predict(input_arr)
+    return np.argmax(prediction)
+
 
 # -----------------------------
 # Sidebar navigation

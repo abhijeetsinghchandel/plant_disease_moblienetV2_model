@@ -1,4 +1,3 @@
-%%writefile /content/plant-disease-mobilenet-v2/app.py
 import streamlit as st
 import tensorflow as tf
 import numpy as np
@@ -11,7 +10,7 @@ st.set_page_config(page_title="Plant Disease Recognition", layout="centered")
 # -----------------------------
 # Load model safely
 # -----------------------------
-MODEL_PATH = "plant_disease_model.keras"
+MODEL_PATH = "plant_disease_moblienetV2_model.keras"
 model = None
 
 if os.path.exists(MODEL_PATH):
